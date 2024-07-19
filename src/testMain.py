@@ -4,8 +4,19 @@ import time
 import pyautogui
 import os
 import sys
+from screeninfo import get_monitors
 
+# 分辨率调整
+monitor = get_monitors()[0]
+screenWidthRatio = round(monitor.width / 1920, 2)
+screenHeightRatio = round(monitor.height / 1080, 2)
+def calculateWidth(width):
+    return round(width * screenWidthRatio,1)
 
+def calculateHeight(height):
+    return round(height * screenHeightRatio, 1)
+
+# 日志记录
 class Logger(object):
     def __init__(self, filename="Default.log"):
         self.terminal = sys.stdout
@@ -89,40 +100,40 @@ ensure_image_paths = [
 exception_game_start_image_lists = [
     {"code": 2, "image_paths": start_image_paths,
         "description": "对局开始:等待超过10min，开始",
-        "x1": 960, "y1": 980, "clickStep": 1},
+        "x1": calculateWidth(960), "y1": calculateHeight(980), "clickStep": 1},
 ]
 exception_game_enter_image_lists = [
     {"code": 1, "image_paths": enter_image_paths,
      "description": "对局开始:玩家未准备，进入链接",
-     "x1": 970, "y1": 920, "clickStep": 1},
+     "x1": calculateWidth(970), "y1": calculateHeight(920), "clickStep": 1},
     {"code": 3, "image_paths": ensure_image_paths,
      "description": "对局开始:有玩家无法连接至服务器，对局终止，确定",
-     "x1": 963, "y1": 695, "clickStep": 1},
+     "x1": calculateWidth(963), "y1": calculateHeight(695), "clickStep": 1},
     {"code": 2, "image_paths": start_image_paths,
      "description": "对局开始:有玩家无法连接至服务器，对局终止，开始",
-     "x1": 960, "y1": 980, "clickStep": 1},
+     "x1": calculateWidth(960), "y1": calculateHeight(980), "clickStep": 1},
 ]
 exception_game_over_image_paths = [
     {"code": 1, "image_paths": back_image_paths,
         "description": "对局结束:30级以前的升级检测，返回",
-        "x1": 800, "y1": 970, "clickStep": 1},
+        "x1": calculateWidth(800), "y1": calculateHeight(970), "clickStep": 1},
     {"code": 2, "image_paths": close_image_paths,
         "description": "对局结束:30级之后的升级检测，关闭",
-        "x1": 960, "y1": 970, "clickStep": 1},
+        "x1": calculateWidth(960), "y1": calculateHeight(970), "clickStep": 1},
     {"code": 3, "image_paths": ensure_image_paths,
         "description": "挂机检测,确认 ",
-        "x1": 945, "y1": 676, "clickStep": 1}
+        "x1": calculateWidth(945), "y1": calculateHeight(676), "clickStep": 1}
 ]
 exception_game_over2_image_paths = [
     {"code": 1, "image_paths": back_image_paths,
         "description": "对局结束:30级以前的升级检测，返回",
-        "x1": 800, "y1": 970, "x2": 1588, "y2": 1000, "clickStep": 2},
+        "x1": calculateWidth(800), "y1": calculateHeight(970), "x2": calculateWidth(1588), "y2": calculateHeight(1000), "clickStep": 2},
     {"code": 2, "image_paths": close_image_paths,
         "description": "对局结束:30级之后的升级检测，关闭",
-        "x1": 960, "y1": 970, "x2": 1588, "y2": 1000, "clickStep": 2},
+        "x1": calculateWidth(960), "y1": calculateHeight(970), "x2": calculateWidth(1588), "y2": calculateHeight(1000), "clickStep": 2},
     {"code": 3, "image_paths": ensure_image_paths,
         "description": "挂机检测,确认 ",
-        "x1": 945, "y1": 676, "x2": 1588, "y2": 1000, "clickStep": 2},
+        "x1": calculateWidth(945), "y1": calculateHeight(676), "x2": calculateWidth(1588), "y2": calculateHeight(1000), "clickStep": 2},
 ]
 def handlingExceptions(exception_image_lists):
     # print("自动检查异常情况开始......")

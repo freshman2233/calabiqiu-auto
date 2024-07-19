@@ -21,7 +21,7 @@ class Logger(object):
 
 path = os.path.abspath(os.path.dirname(__file__))
 type = sys.getfilesystemencoding()
-sys.stdout = Logger('calabiqiuAuto.txt')
+sys.stdout = Logger('../calabiqiuAuto.txt')
 
 # 获取资源的绝对路径，用于PyInstaller打包后资源的访问
 def resource_path(relative_path):
@@ -29,7 +29,7 @@ def resource_path(relative_path):
     if getattr(sys, ' frozen', False):
         base_path = sys._MEIPASS
     else:
-        base_path = os.path.abspath(".")
+        base_path = os.path.abspath("..")
     return os.path.join(base_path, relative_path)
 
 
@@ -41,42 +41,42 @@ os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 # 图像导入
 start_image_paths = [
-    resource_path('images\\start1.png'),
-    resource_path('images\\start2.png')
+    resource_path('../images/start1.png'),
+    resource_path('../images/start2.png')
 ]
-enter_image_paths = [resource_path('images\\enter.png')]
-ao_image_paths = [resource_path('images\\ao.png')]
+enter_image_paths = [resource_path('../images/enter.png')]
+ao_image_paths = [resource_path('../images/ao.png')]
 lock_image_paths = [
-    resource_path('images\\lock1.png'),
-    resource_path('images\\lock2.png')
+    resource_path('../images/lock1.png'),
+    resource_path('../images/lock2.png')
 ]
 nums_image_paths = [
-    resource_path('images\\m-45.png'),
-    resource_path('images\\m-46.png'),
-    resource_path('images\\m-47.png'),
-    resource_path('images\\m-48.png'),
-    resource_path('images\\m-49.png')
+    resource_path('../images/m-45.png'),
+    resource_path('../images/m-46.png'),
+    resource_path('../images/m-47.png'),
+    resource_path('../images/m-48.png'),
+    resource_path('../images/m-49.png')
 ]
 back_image_paths = [
-    resource_path('images\\back1.png'),
-    resource_path('images\\back2.png')
+    resource_path('../images/back1.png'),
+    resource_path('../images/back2.png')
 ]
 close_image_paths = [
-    resource_path('images\\close1.png'),
-    resource_path('images\\close2.png'),
-    resource_path('images\\close3.png'),
-    resource_path('images\\close4.png')
+    resource_path('../images/close1.png'),
+    resource_path('../images/close2.png'),
+    resource_path('../images/close3.png'),
+    resource_path('../images/close4.png')
 ]
 next_image_paths = [
-    resource_path('images\\next.png'),
-    resource_path('images\\next2.png')
+    resource_path('../images/next.png'),
+    resource_path('../images/next2.png')
 ]
 leave_image_paths = [
-    resource_path('images\\leave1.png'),
-    resource_path('images\\leave2.png'),
+    resource_path('../images/leave1.png'),
+    resource_path('../images/leave2.png'),
 ]
 ensure_image_paths = [
-    resource_path('images\\ensure1.png')
+    resource_path('../images/ensure1.png')
 ]
 
 
