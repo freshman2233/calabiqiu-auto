@@ -4,6 +4,8 @@ import time
 import pyautogui
 import os
 import sys
+import win32gui
+import win32con
 
 
 class Logger(object):
@@ -22,6 +24,15 @@ class Logger(object):
 path = os.path.abspath(os.path.dirname(__file__))
 type = sys.getfilesystemencoding()
 sys.stdout = Logger('calabiqiuAuto.txt')
+
+
+# 将游戏窗口置于最前，防止被其他窗口遮挡
+def set_foreground_window():
+    hwnd = win32gui.FindWindow(None, "卡拉彼丘  ")
+    # 设置窗口为最前
+    win32gui.SetForegroundWindow(hwnd)
+    # 显示窗口，解决窗口最小化问题
+    win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
 
 # 获取资源的绝对路径，用于PyInstaller打包后资源的访问
 def resource_path(relative_path):
@@ -155,6 +166,8 @@ def loopList(image_list, loop_times, confidence, description, x, y, sleepTime,
     loopListCount = 0
     findThePic = False
     while True:
+        # 每次循环之前把窗口置于最前
+        set_foreground_window()
         loopListCount += 1
         if loopListCount >= loop_times:
             print(f"循环超过{loop_times}次，点击默认位置({x},{y})，跳出循环")
